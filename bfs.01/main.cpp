@@ -1,15 +1,44 @@
-//
-//  main.cpp
-//  bfs.01
-//
-//  Created by s20181105879 on 2019/10/8.
-//  Copyright © 2019 s20181105879. All rights reserved.
-//
-
 #include <iostream>
-
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+#include <queue>
+#define N 5
+using namespace std;
+int maze[N][N] = {
+    { 0, 1, 1, 0, 0 },
+    { 0, 0, 1, 1, 0 },
+    { 0, 1, 1, 1, 0 },
+    { 1, 0, 0, 0, 0 },
+    { 0, 0, 1, 1, 0 }
+};
+int visited[N + 1] = { 0, };
+void BFS(int start)
+{
+    queue<int> Q;
+    Q.push(start);
+    visited[start] = 1;
+    while (!Q.empty())
+    {
+        int front = Q.front();
+        cout << front <<endl;
+        Q.pop();
+        for (int i = 1; i <= N; i++)
+        {
+            if (!visited[i] && maze[front - 1][i - 1] == 1)
+            {
+                visited[i] = 1;
+                Q.push(i);
+            }
+        }
+    }
+    cout<<"Next"<<endl<<endl;
+}
+int main()
+{
+    cout<<"jfdkghdsg"<<endl;
+    for (int i = 1; i <= N; i++)
+    {
+        if (visited[i] == 1)
+            continue;
+        BFS(i);
+    }
     return 0;
 }
